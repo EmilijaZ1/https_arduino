@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+
+
+<h1>REMOTE ROTATOR CONTROL</h1>
+<h3>Test</h3>
+
+
+<body>
+
+  <button id="turnRightBtn">Turn Right</button>
+ 
+  <button id="turnLeftBtn">Turn Left</button>
+
+  <!-- <script src="http://localhost/socket.io/socket.io.js"></script> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.3/socket.io.js"></script>
+  <script>
+    const socket = io();
+  
+
+    function sendCommand(command) {
+      socket.emit('command', command);
+    }
+
+    document.getElementById('turnRightBtn').addEventListener('click', () => {
+      sendCommand('turnright');
+      console.log('Turn Right button clicked');
+    });
+    
+    document.getElementById('turnLeftBtn').addEventListener('click', () => {
+      sendCommand('turnleft');
+      console.log('Turn Left button clicked');
+    });
+  </script>
+
+</body>
+
+
+
+<%- include("partials/footer.ejs") %>
+
